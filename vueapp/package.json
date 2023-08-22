@@ -3,19 +3,26 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "serve": "vite preview",
     "build": "vite build",
-    "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "predev": "node aspnetcore-https.js"
+    "dev": "vite",
+    "predev": "node aspnetcore-https.js",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.3.4"
+    "@mdi/font": "5.9.55",
+    "roboto-fontface": "*",
+    "vue": "^3.3.4",
+    "vuetify": "^3.0.0-beta.0",
+    "webfontloader": "^1.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.3.1",
     "eslint": "^8.46.0",
     "eslint-plugin-vue": "^9.16.1",
-    "vite": "^4.4.9"
+    "vite": "^4.4.9",
+    "vite-plugin-vuetify": "^1.0.0-alpha.12",
+    "vue-cli-plugin-vuetify": "~2.5.8"
   }
 }

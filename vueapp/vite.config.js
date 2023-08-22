@@ -21,9 +21,15 @@ if (!certificateName) {
 const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
 const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
 
+// https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
+import vuetify from 'vite-plugin-vuetify'
+
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [plugin()],
+    plugins: [
+		plugin(),
+		vuetify({ autoImport: true }),
+	],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
