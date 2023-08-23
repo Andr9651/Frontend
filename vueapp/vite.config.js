@@ -27,9 +27,9 @@ import vuetify from 'vite-plugin-vuetify'
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
-		plugin(),
-		vuetify({ autoImport: true }),
-	],
+        plugin(),
+        vuetify({ autoImport: true }),
+    ],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -40,9 +40,13 @@ export default defineConfig({
             '^/weatherforecast': {
                 target: 'https://localhost:7144/',
                 secure: false
+            },
+            '/api': {
+                target: "https://localhost:9000",
+                secure: false
             }
         },
-        port: 5173,
+        port: 8000,
         https: {
             key: fs.readFileSync(keyFilePath),
             cert: fs.readFileSync(certFilePath),

@@ -1,23 +1,25 @@
 <template>
-  <v-app>
-    <v-main>
-      <HelloWorld/>
-    </v-main>
-  </v-app>
+  <vApp>
+    <vAppBar>
+      <vAppBarNavIcon @click.stop="drawer = !drawer" />
+      <vAppBarTitle color="primary">
+        <span>TechnicianManager</span>
+      </vAppBarTitle>
+    </vAppBar>
+    <VNavigationDrawer v-model="drawer">
+      <NavMenuContent></NavMenuContent>
+    </VNavigationDrawer>
+    <vMain>
+
+      <routerView />
+
+    </vMain>
+  </vApp>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import NavMenuContent from './components/NavMenuContent.vue'
+import { ref } from 'vue'
+const drawer = ref(false)
 
-export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-}
 </script>
