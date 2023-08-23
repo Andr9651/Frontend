@@ -3,7 +3,7 @@
     <vAppBar>
       <vAppBarNavIcon @click.stop="drawer = !drawer" />
       <vAppBarTitle color="primary">
-        <span>TechnicianManager</span>
+        <span>{{ $router.currentRoute.value.name }}</span>
       </vAppBarTitle>
     </vAppBar>
     <VNavigationDrawer v-model="drawer">

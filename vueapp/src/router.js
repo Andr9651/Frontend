@@ -7,17 +7,17 @@ const routes = [
 
     {
         path: encodeURI('/'),
-        name: 'Home',
+        name: 'Hjem',
         component: HomePage,
     },
     {
-        path: encodeURI('/Montør'),
-        name: 'Montør',
+        path: encodeURI('/Montører'),
+        name: 'Montører',
         component: SubTechnicians,
     },
     {
-        path: encodeURI('/Overmontør'),
-        name: 'Overmontør',
+        path: encodeURI('/Overmontører'),
+        name: 'Overmontører',
         component: SuperTechnicians,
     },
 ]

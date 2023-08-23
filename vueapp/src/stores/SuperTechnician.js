@@ -8,6 +8,10 @@ export const useSuperTechnicianStore = defineStore('superTechnician', {
         }
     },
 
+    getters: {
+        empty: () => ({ firstName: "", middleName: "", lastName: "", phoneNumber: "", email: "" }),
+    },
+
     actions: {
         async getMany() {
 

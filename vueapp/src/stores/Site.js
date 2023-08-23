@@ -12,13 +12,13 @@ export const useSiteStore = defineStore('site', {
                 {
                     text: 'Montører',
                     icon: 'mdi-account',
-                    route: encodeURI('/Montør')
+                    route: encodeURI('/Montører')
                 }
                 ,
                 {
                     text: 'Overmontører',
                     icon: 'mdi-account-supervisor',
-                    route: encodeURI('/Overmontør')
+                    route: encodeURI('/Overmontører')
                 }
             ]
         }
