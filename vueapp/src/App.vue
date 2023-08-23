@@ -10,8 +10,9 @@
       <NavMenuContent></NavMenuContent>
     </VNavigationDrawer>
     <vMain>
-
-      <routerView />
+      <Suspense>
+        <routerView />
+      </Suspense>
 
     </vMain>
   </vApp>

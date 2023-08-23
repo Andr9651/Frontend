@@ -1,7 +1,7 @@
 <template>
     <v-card class="mx-auto">
         <vList>
-            <v-list-item v-for="item in superTechnicians" :key="item.id" :value="item.id">
+            <v-list-item v-for="item in subTechnicians" :key="item.id" :value="item.id">
                 <p>{{ item.firstName }}</p>
                 <a href=""></a>
             </v-list-item>
@@ -10,8 +10,8 @@
 </template>
 
 <script setup>
-import { useSuperTechnicianStore } from '@/stores/SuperTechnician';
+import { useSubTechnicianStore } from '@/stores/SubTechnician';
 
-const { getMany, superTechnicians } = useSuperTechnicianStore();
+const { getMany, subTechnicians } = useSubTechnicianStore();
 await getMany();
 </script>

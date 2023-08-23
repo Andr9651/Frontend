@@ -1,23 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SuperTechnicianList from './components/SuperTechnicianList.vue'
-import Home from './components/Views/Home.vue'
+import SuperTechnicians from './components/views/SuperTechnicians.vue'
+import SubTechnicians from './components/views/SubTechnicians.vue'
+import HomePage from './components/views/HomePage.vue'
 
 const routes = [
 
     {
         path: encodeURI('/'),
         name: 'Home',
-        component: Home,
+        component: HomePage,
     },
     {
         path: encodeURI('/Montør'),
         name: 'Montør',
-        component: SuperTechnicianList,
+        component: SubTechnicians,
     },
     {
         path: encodeURI('/Overmontør'),
         name: 'Overmontør',
-        component: SuperTechnicianList,
+        component: SuperTechnicians,
     },
 ]
 
