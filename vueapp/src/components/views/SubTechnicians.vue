@@ -1,8 +1,11 @@
 <template>
-    <SubTechnicianList></SubTechnicianList>
+    <TechnicianList :technicians="subTechnicians"></TechnicianList>
 </template>
 
 <script setup>
-import SubTechnicianList from '@/components/SubTechnicianList.vue';
+import TechnicianList from '@/components/TechnicianList.vue';
+import { useSubTechnicianStore } from '@/stores/SubTechnician';
 
+const { getMany, subTechnicians } = useSubTechnicianStore();
+await getMany();
 </script>
