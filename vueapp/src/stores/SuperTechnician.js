@@ -73,6 +73,8 @@ export const useSuperTechnicianStore = defineStore('superTechnician', {
     },
     async getSubTechnicians(id, pageNumber, pageSize){
       const baseUrl = `/api/SuperTechnician/${id}/SubTechnicians?`;
+      
+      this.subTechnicians = [];
 
       // Api counts from 0
       const queryParameters = new URLSearchParams({
@@ -86,10 +88,15 @@ export const useSuperTechnicianStore = defineStore('superTechnician', {
 
       const json = await response.json();
 
+
       // direct assignment to subtechnicians would break reactivity
       for (let i = 0; i < json.length; i++) {
         this.subTechnicians[i] = json[i];
       }
+
+      console.log(this.superTechnicians)
+
+      
     },
     async update(technician) {
       const baseUrl = `/api/SuperTechnician/${technician.id}`;

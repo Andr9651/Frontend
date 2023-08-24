@@ -1,6 +1,7 @@
 <template>
   <VDataTableServer
     v-model:items-per-page="itemsPerPage"
+    v-model:page="page"
     :items-per-page-options="paginationOptions"
     :headers="headers"
     :items-length="totalItems"
@@ -34,7 +35,7 @@
       </VIcon>
       <VIcon
         size="small"
-        @click="deleteTechnician(item.raw.id)"
+        @click="deleteAction(item.raw.id)"
       >
         mdi-delete
       </VIcon>
@@ -43,7 +44,6 @@
 </template>
 
 <script setup>
-
 import { useSuperTechnicianStore } from '@/stores/SuperTechnician';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
@@ -54,11 +54,13 @@ const { getMany, deleteTechnician } = store;
 
 //Table Config
 const paginationOptions = [
+   { value: 2, title: '2' },
    { value: 10, title: '10' },
    { value: 25, title: '25' },
    { value: 50, title: '50' },
   ]
-const itemsPerPage = ref(2)
+const itemsPerPage = ref(10)
+const page = ref(1)
 const loading = ref(true)
 const headers = ref([
     { title: 'Fornavn', key: 'firstName', align: 'end', sortable: false  },
@@ -68,6 +70,12 @@ const headers = ref([
     { title: 'E-mail', key: 'email', align: 'end', sortable: false  },    
     { title: 'Handlinger', key: 'actions', align:'end', sortable: false },
   ])
+
+async function deleteAction(id){
+  deleteTechnician(id);
+  updateTable({ page: page.value, itemsPerPage: itemsPerPage.value })
+}
+
 
 async function updateTable({ page, itemsPerPage }){
   loading.value = true;

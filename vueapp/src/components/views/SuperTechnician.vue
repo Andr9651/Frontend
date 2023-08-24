@@ -2,6 +2,7 @@
   <TechnicianForm
     :technician="tempTechnician"
     related-title="Undermontører"
+    :related-technicians="subTechnicians"
   >
     <template #save>
       <VBtn
@@ -24,20 +25,11 @@
         Annuller
       </VBtn>
     </template>
-    <template #delete>
-      <VBtn
-        :v-if="isUpdating"
-        color="warning"
-        prepend-icon="mdi-delete"
-      >
-        Slet
-      </VBtn>
-    </template>
   </TechnicianForm>
 </template>
 
 <script setup>
-import TechnicianForm from '../TechnicianForm.vue';
+import TechnicianForm from '@/components/TechnicianForm.vue';
 import { useSuperTechnicianStore } from '@/stores/SuperTechnician';
 import { storeToRefs } from 'pinia';
 import { defineProps, ref, watch } from 'vue';
@@ -49,11 +41,12 @@ const props = defineProps(['id'])
 const isUpdating = ref(!isNaN(props.id));
 
 const store = useSuperTechnicianStore();
-const { currentlySelected } = storeToRefs(store);
-const { getSingle, create, update, deleteTechnician, resetCurrentlySelected } = store;
+const { currentlySelected, subTechnicians } = storeToRefs(store);
+const { getSingle, create, update, resetCurrentlySelected, getSubTechnicians } = store;
 
 if (isUpdating.value) {
   await getSingle(props.id);
+  await getSubTechnicians(props.id, 0,20);
 } else {
   resetCurrentlySelected();
 }
