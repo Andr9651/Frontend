@@ -1,5 +1,8 @@
 <template>
-  <TechnicianForm :technician="tempTechnician">
+  <TechnicianForm
+    :technician="tempTechnician"
+    related-title="Undermontører"
+  >
     <template #save>
       <VBtn
         :disabled="!changed"

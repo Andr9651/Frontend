@@ -1,6 +1,8 @@
 <template>
-  <H1>Velkommen til Montør Manager</H1>
-  <HomeGreeting :message="{ a: 12312 }.a" />
+  <div class="text-h2">
+    Velkommen til Montør Manager
+  </div>
+  <HomeGreeting :message="new Date(Date.now()).toLocaleString('da-DK')" />
 </template>
 
 <script setup>

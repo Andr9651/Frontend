@@ -1,7 +1,5 @@
 <template>
   <VForm class="pa-5">
-    <h2>{{ title }}</h2>
-
     <VTextField
       v-model="technician.firstName"
       :rules="firstNameRules"
@@ -31,7 +29,10 @@
       label="E-mail"
     />
 
-    <h3>{{ relatedTitle }}</h3>
+    <div class="text-h6">
+      {{ relatedTitle }}
+    </div>
+
     <VSheet
       class="ma-5 fill-height"
       border
@@ -52,7 +53,7 @@
 import TechnicianList from '@/components/TechnicianList.vue';
 import { toRefs } from 'vue';
 
-const props = defineProps(['technician', 'relatedTechnicians', 'title', 'relatedTitle'])
+const props = defineProps(['technician', 'relatedTechnicians', 'relatedTitle'])
 const { technician, relatedTechnicians } = toRefs(props)
 
 function required(fieldName) {
