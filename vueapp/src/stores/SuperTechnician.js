@@ -43,6 +43,9 @@ export const useSuperTechnicianStore = defineStore('superTechnician', {
       return response.ok
     },
     async getMany(pageNumber, pageSize) {
+
+      this.superTechnicians = []
+
       const baseUrl = "/api/SuperTechnician?";
 
       //Api counts from 0
