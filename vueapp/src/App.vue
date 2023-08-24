@@ -5,16 +5,18 @@
       <VAppBarTitle color="primary">
         <span>{{ $router.currentRoute.value.name }}</span>
       </VAppBarTitle>
-      <VBtn icon="mdi-circle-half-full" @click="toggleTheme"></VBtn>
+      <VBtn
+        icon="mdi-circle-half-full"
+        @click="toggleTheme"
+      />
     </VAppBar>
     <VNavigationDrawer v-model="drawer">
-      <NavMenuContent></NavMenuContent>
+      <NavMenuContent />
     </VNavigationDrawer>
     <VMain>
       <Suspense>
         <RouterView />
       </Suspense>
-
     </VMain>
   </VApp>
 </template>

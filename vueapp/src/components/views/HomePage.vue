@@ -1,6 +1,6 @@
 <template>
-    <H1>Velkommen til Montør Manager</H1>
-    <HomeGreeting :message="{ a: 12312 }.a"></HomeGreeting>
+  <H1>Velkommen til Montør Manager</H1>
+  <HomeGreeting :message="{ a: 12312 }.a" />
 </template>
 
 <script setup>

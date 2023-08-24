@@ -1,5 +1,5 @@
 <template>
-    <TechnicianList :technicians="subTechnicians"></TechnicianList>
+  <TechnicianList :technicians="subTechnicians" />
 </template>
 
 <script setup>

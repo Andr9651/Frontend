@@ -1,15 +1,20 @@
 <template>
-    <v-list nav density="compact">
-        <v-list-item v-for="link in navLinks" :key="link.text" :to="link.route">
-            <template v-slot:prepend>
-                <v-icon>{{ link.icon }}</v-icon>
-            </template>
+  <VList
+    nav
+    density="compact"
+  >
+    <VListItem
+      v-for="link in navLinks"
+      :key="link.text"
+      :to="link.route"
+    >
+      <template #prepend>
+        <VIcon>{{ link.icon }}</VIcon>
+      </template>
 
-            <v-list-item-title>{{ link.text }}</v-list-item-title>
-        </v-list-item>
-
-
-    </v-list>
+      <VListItemTitle>{{ link.text }}</VListItemTitle>
+    </VListItem>
+  </VList>
 </template>
 
 <script setup>

@@ -1,7 +1,7 @@
 <template>
-    <p>
-        {{ props.message }}
-    </p>
+  <p>
+    {{ props.message }}
+  </p>
 </template>
 
 <script setup>

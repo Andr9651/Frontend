@@ -1,13 +1,21 @@
 <template>
-    <TechnicianList :technicians="superTechnicians" @onSelect="handleListSelect"></TechnicianList>
-    <v-dialog v-model="edit" width="w-auto">
-
-
-        <v-card>
-            <TechnicianForm :technician="currentlySelected" :relatedTechnicians="superTechnicians" title="Overmontør"
-                relatedTitle="Undermontører"></TechnicianForm>
-        </v-card>
-    </v-dialog>
+  <TechnicianList
+    :technicians="superTechnicians"
+    @on-select="handleListSelect"
+  />
+  <VDialog
+    v-model="edit"
+    width="w-auto"
+  >
+    <VCard>
+      <TechnicianForm
+        :technician="currentlySelected"
+        :related-technicians="superTechnicians"
+        title="Overmontør"
+        related-title="Undermontører"
+      />
+    </VCard>
+  </VDialog>
 </template>
 
 <script setup>
@@ -25,9 +33,9 @@ await getMany();
 const edit = ref(false)
 
 function handleListSelect(objectEmitted) {
-    currentlySelected.value = objectEmitted
-    console.log(currentlySelected.value)
-    edit.value = !edit.value
+  currentlySelected.value = objectEmitted
+  console.log(currentlySelected.value)
+  edit.value = !edit.value
 }
 
 

@@ -1,18 +1,36 @@
 <template>
-    <TechnicianForm :technician="tempTechnician">
-        <template v-slot:save>
-            <v-btn @click="save" :disabled="!changed" class="mr-3" color="success"
-                prepend-icon="mdi-content-save">Gem</v-btn>
-        </template>
-        <template v-slot:cancel>
-            <v-btn @click="cancel" class="mr-3" color="error" prepend-icon="mdi-cancel">Annuller</v-btn>
-
-        </template>
-        <template v-slot:delete>
-            <v-btn v-if="tempTechnician.id != null" color="warning" prepend-icon="mdi-delete">Slet</v-btn>
-        </template>
-
-    </TechnicianForm>
+  <TechnicianForm :technician="tempTechnician">
+    <template #save>
+      <VBtn
+        :disabled="!changed"
+        class="mr-3"
+        color="success"
+        prepend-icon="mdi-content-save"
+        @click="save"
+      >
+        Gem
+      </VBtn>
+    </template>
+    <template #cancel>
+      <VBtn
+        class="mr-3"
+        color="error"
+        prepend-icon="mdi-cancel"
+        @click="cancel"
+      >
+        Annuller
+      </VBtn>
+    </template>
+    <template #delete>
+      <VBtn
+        v-if="tempTechnician.id != null"
+        color="warning"
+        prepend-icon="mdi-delete"
+      >
+        Slet
+      </VBtn>
+    </template>
+  </TechnicianForm>
 </template>
 
 <script setup>

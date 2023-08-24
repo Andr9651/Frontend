@@ -1,24 +1,51 @@
 <template>
-    <v-form class="pa-5">
-        <h2>{{ title }}</h2>
+  <VForm class="pa-5">
+    <h2>{{ title }}</h2>
 
-        <v-text-field v-model="technician.firstName" :rules="firstNameRules" label="Fornavn"></v-text-field>
+    <VTextField
+      v-model="technician.firstName"
+      :rules="firstNameRules"
+      label="Fornavn"
+    />
 
-        <v-text-field v-model="technician.middleName" :rules="middleNameRules" label="Mellemnavn"></v-text-field>
-        <v-text-field v-model="technician.lastName" :rules="lastNameRules" label="Efternavn"></v-text-field>
+    <VTextField
+      v-model="technician.middleName"
+      :rules="middleNameRules"
+      label="Mellemnavn"
+    />
+    <VTextField
+      v-model="technician.lastName"
+      :rules="lastNameRules"
+      label="Efternavn"
+    />
 
-        <v-text-field v-model="technician.phoneNumber" :rules="phoneNumberRules" label="Telefon nummer"
-            required></v-text-field>
-        <v-text-field v-model="technician.email" :rules="emailRules" label="E-mail"></v-text-field>
+    <VTextField
+      v-model="technician.phoneNumber"
+      :rules="phoneNumberRules"
+      label="Telefon nummer"
+      required
+    />
+    <VTextField
+      v-model="technician.email"
+      :rules="emailRules"
+      label="E-mail"
+    />
 
-        <h3>{{ relatedTitle }}</h3>
-        <v-sheet class="ma-5 fill-height" border rounded>
-            <TechnicianList class :technicians="relatedTechnicians"></TechnicianList>
-        </v-sheet>
-        <slot name="save" />
-        <slot name="cancel" />
-        <slot name="delete" />
-    </v-form>
+    <h3>{{ relatedTitle }}</h3>
+    <VSheet
+      class="ma-5 fill-height"
+      border
+      rounded
+    >
+      <TechnicianList
+        class
+        :technicians="relatedTechnicians"
+      />
+    </VSheet> 
+    <slot name="save" />
+    <slot name="cancel" />
+    <slot name="delete" />
+  </VForm>
 </template>
 
 <script setup>
