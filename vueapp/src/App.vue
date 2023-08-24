@@ -1,26 +1,34 @@
 <template>
-  <vApp>
-    <vAppBar>
-      <vAppBarNavIcon @click.stop="drawer = !drawer" />
-      <vAppBarTitle color="primary">
+  <VApp>
+    <VAppBar>
+      <VAppBarNavIcon @click.stop="drawer = !drawer" />
+      <VAppBarTitle color="primary">
         <span>{{ $router.currentRoute.value.name }}</span>
-      </vAppBarTitle>
-    </vAppBar>
+      </VAppBarTitle>
+      <VBtn icon="mdi-circle-half-full" @click="toggleTheme"></VBtn>
+    </VAppBar>
     <VNavigationDrawer v-model="drawer">
       <NavMenuContent></NavMenuContent>
     </VNavigationDrawer>
-    <vMain>
+    <VMain>
       <Suspense>
-        <routerView />
+        <RouterView />
       </Suspense>
 
-    </vMain>
-  </vApp>
+    </VMain>
+  </VApp>
 </template>
 
 <script setup>
 import NavMenuContent from './components/NavMenuContent.vue'
+import { useTheme } from 'vuetify'
 import { ref } from 'vue'
 const drawer = ref(false)
+
+const theme = useTheme()
+
+function toggleTheme() {
+  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+}
 
 </script>
