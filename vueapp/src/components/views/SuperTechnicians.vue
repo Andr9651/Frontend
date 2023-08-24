@@ -1,41 +1,47 @@
 <template>
-  <TechnicianList
-    :technicians="superTechnicians"
-    @on-select="handleListSelect"
-  />
-  <VDialog
-    v-model="edit"
-    width="w-auto"
+  <VDataTable
+    v-model:items-per-page="itemsPerPage"
+    :headers="headers"
+    :items-length="totalItems"
+    :items="superTechnicians"
+    :loading="loading"
+    :search="search"
+    class="elevation-1"
+    item-value="name"
+    @update:options="updateTable"
   >
-    <VCard>
-      <TechnicianForm
-        :technician="currentlySelected"
-        :related-technicians="superTechnicians"
-        title="Overmontør"
-        related-title="Undermontører"
-      />
-    </VCard>
-  </VDialog>
+    <template #item.actions="{item}" />
+  </VDataTable>
 </template>
 
 <script setup>
-import TechnicianList from '@/components/TechnicianList.vue';
-import TechnicianForm from '@/components/TechnicianForm.vue';
+
 import { useSuperTechnicianStore } from '@/stores/SuperTechnician';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
+
 const store = useSuperTechnicianStore();
-const { superTechnicians, currentlySelected } = storeToRefs(store);
+const { superTechnicians } = storeToRefs(store);
 const { getMany } = store;
 
-await getMany();
+//Table Config
+const itemsPerPage = ref(5)
+const search = ref('')
+const loading = ref(true)
+const totalItems = ref(0)
+const headers = ref([
+    { title: 'Fornavn', key: 'firstName', align: 'end' },
+    { title: 'Mellemnavn', key: 'middleName', align: 'end' },
+    { title: 'Efternavn', key: 'lastName', align: 'end' },
+    { title: 'Telefonnummer', key: 'phoneNumber', align: 'end' },
+    { title: 'E-mail', key: 'email', align: 'end' },
+  ])
 
-const edit = ref(false)
-
-function handleListSelect(objectEmitted) {
-  currentlySelected.value = objectEmitted
-  console.log(currentlySelected.value)
-  edit.value = !edit.value
+async function updateTable(){
+  loading.value = true;
+  await getMany()
+  loading.value = false;
+  
 }
 
 
