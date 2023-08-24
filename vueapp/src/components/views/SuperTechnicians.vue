@@ -1,17 +1,45 @@
 <template>
-  <VDataTable
+  <VDataTableServer
     v-model:items-per-page="itemsPerPage"
+    :items-per-page-options="paginationOptions"
     :headers="headers"
     :items-length="totalItems"
     :items="superTechnicians"
     :loading="loading"
-    :search="search"
-    class="elevation-1"
+    class="elevation-1 ma-0 pa-0"
     item-value="name"
     @update:options="updateTable"
   >
-    <template #item.actions="{item}" />
-  </VDataTable>
+    <template #top>
+      <VToolbar
+        title="Overmontører"
+      >
+        <VBtn
+          color="info"
+          variant="flat"
+          prepend-icon="mdi-plus"
+          text="Opret ny"
+          @click="$router.push(encodeURI('/NyOvermontør'))"
+        />
+      </VToolbar>
+    </template>
+
+    <template #item.actions="{ item }">
+      <VIcon
+        size="small"
+        class="me-2"
+        @click="$router.push(encodeURI(`/Overmontører/${item.raw.id}`))"
+      >
+        mdi-pencil
+      </VIcon>
+      <VIcon
+        size="small"
+        @click="deleteTechnician(item.raw.id)"
+      >
+        mdi-delete
+      </VIcon>
+    </template>
+  </VDataTableServer>
 </template>
 
 <script setup>
@@ -21,28 +49,31 @@ import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 
 const store = useSuperTechnicianStore();
-const { superTechnicians } = storeToRefs(store);
-const { getMany } = store;
+const { superTechnicians, count:totalItems } = storeToRefs(store);
+const { getMany, deleteTechnician } = store;
 
 //Table Config
-const itemsPerPage = ref(5)
-const search = ref('')
+const paginationOptions = [
+   { value: 10, title: '10' },
+   { value: 25, title: '25' },
+   { value: 50, title: '50' },
+  ]
+const itemsPerPage = ref(2)
 const loading = ref(true)
-const totalItems = ref(0)
 const headers = ref([
-    { title: 'Fornavn', key: 'firstName', align: 'end' },
-    { title: 'Mellemnavn', key: 'middleName', align: 'end' },
-    { title: 'Efternavn', key: 'lastName', align: 'end' },
-    { title: 'Telefonnummer', key: 'phoneNumber', align: 'end' },
-    { title: 'E-mail', key: 'email', align: 'end' },
+    { title: 'Fornavn', key: 'firstName', align: 'end', sortable: false  },
+    { title: 'Mellemnavn', key: 'middleName', align: 'end', sortable: false  },
+    { title: 'Efternavn', key: 'lastName', align: 'end', sortable: false  },
+    { title: 'Telefonnummer', key: 'phoneNumber', align: 'end', sortable: false  },
+    { title: 'E-mail', key: 'email', align: 'end', sortable: false  },    
+    { title: 'Handlinger', key: 'actions', align:'end', sortable: false },
   ])
 
-async function updateTable(){
+async function updateTable({ page, itemsPerPage }){
   loading.value = true;
-  await getMany()
+
+  await getMany(page, itemsPerPage)
+
   loading.value = false;
-  
 }
-
-
 </script>

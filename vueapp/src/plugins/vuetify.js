@@ -6,17 +6,14 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import { VDataTable } from 'vuetify/labs/VDataTable'
-//import { VDataTableServer } from 'vuetify/labs/VDataTableServer'
-//import { VDataTableVirtual } from 'vuetify/labs/VDataTableVirtual'
+import { VDataTable, VDataTableServer } from 'vuetify/labs/VDataTable'
 
 
 export default createVuetify({
   components:{
     ...components,
     VDataTable,
-    //VDataTableServer,
-    //VDataTableVirtual,
+    VDataTableServer,
   },
   directives,
   theme: { defaultTheme: 'dark' }

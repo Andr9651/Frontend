@@ -9,9 +9,9 @@
         class="mr-3"
         color="success"
         prepend-icon="mdi-content-save"
-        @click="save"
+        @click="saveChanges"
       >
-        Gem
+        {{ isUpdating ? 'Gem' : 'Opret' }}
       </VBtn>
     </template>
     <template #cancel>
@@ -26,7 +26,7 @@
     </template>
     <template #delete>
       <VBtn
-        v-if="tempTechnician.id != null"
+        :v-if="isUpdating"
         color="warning"
         prepend-icon="mdi-delete"
       >
@@ -43,13 +43,20 @@ import { storeToRefs } from 'pinia';
 import { defineProps, ref, watch } from 'vue';
 import router from '../../router';
 
+//'id' comes from the query parameters
 const props = defineProps(['id'])
 
-const store = useSuperTechnicianStore();
+const isUpdating = ref(!isNaN(props.id));
 
+const store = useSuperTechnicianStore();
 const { currentlySelected } = storeToRefs(store);
-const { getSingle, update } = store;
-await getSingle(props.id);
+const { getSingle, create, update, deleteTechnician, resetCurrentlySelected } = store;
+
+if (isUpdating.value) {
+  await getSingle(props.id);
+} else {
+  resetCurrentlySelected();
+}
 
 const tempTechnician = ref(JSON.parse(JSON.stringify(currentlySelected.value)))
 
@@ -57,16 +64,19 @@ const changed = ref(false)
 
 watch(tempTechnician.value, () => changed.value = true)
 
-async function save() {
-    console.log('saved')
-    changed.value = false;
-    const success = await update(tempTechnician.value);
-    console.log(success)
+async function saveChanges() {
+  console.log('saved')
+  changed.value = false;
+  if (isUpdating.value) {
+    await update(tempTechnician.value);
+  } else {
+    await create(tempTechnician.value);
+  }
+  router.push(encodeURI('/Overmontører'))
 }
 
 function cancel() {
-    router.push(encodeURI('/Overmontører'))
-    currentlySelected.value = null;
+  router.push(encodeURI('/Overmontører'))
 }
 
 </script>

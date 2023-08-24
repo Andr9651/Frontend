@@ -26,6 +26,11 @@ const routes = [
         name: 'Overmontør',
         component: SuperTechnician,
         props: true
+    },
+    {
+      path: encodeURI('/NyOvermontør'),
+      name: 'Ny Overmontør',
+      component: SuperTechnician
     }
 ]
 
